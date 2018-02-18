@@ -10,6 +10,3 @@ Possibilités:
 	- CentOS : Ok
 	- Debian : Pas de version barebone
 	- Arch linux : Rolling release donc pas assez stable
-
-
-Idée d'amélioration: Firejail
