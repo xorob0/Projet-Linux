@@ -2,6 +2,7 @@
 
 #Configuration de l'interface réseau  ens33
 #ATTENTION, se mettre en NAT et executer en admin
+#ATTENTION, le nom de l'interface peut changer en fontion de la vm
 
 echo "TYPE=Ethernet
 BOOTPROTO=static
