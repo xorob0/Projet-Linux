@@ -1,0 +1,18 @@
+$TTL 3H ;TTL avant que le fichier soit remis à jour  
+@		IN 	SOA	serveur.linux.lan. root.linux.lan. (
+;serveur.linux.lan c'est celui qui fait autorité dans la zone, on rajoute le "." à la fin pour ne pas qu'il rajoute à chaque fin de nom linux.lan car ;sinon il va faire serveur.linux.lan.linux.lan (on peut aussi rajoute le "IN" après le zone "linux.lan" dans /etc/named.conf pour éviter ça )
+;root.linux.lan. est le chef de la zone
+					61818	; serial (on met n'importe quoi)
+;le serial détermine la "version des données", on doit le changer car par défaut il est à 0 et la zone 0 existe déjà
+;On peut changer comme on veut le reste des numéros
+					1D	; refresh
+					1H	; retry
+					1W	; expire maximum
+					3H )	; minimum
+
+@		IN	NS	serveur.linux.lan.
+serveur		IN	A	192.168.65.128
+client1 	IN	A	192.168.65.129
+client2		IN	A	192.168.65.130
+www             IN      CNAME	serveur.linux.lan.
+
