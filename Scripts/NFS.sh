@@ -9,14 +9,8 @@ then
 		exit
 fi
 
-# Le premier argument est le dossier de partage desiré
-DossierPartage = "$1"
-
-# Si il n'y a pas d'argument, on partage /Partage
-if [ -z "$DossierPartage" ]
-then
-	$DossierPartage = "/Partage"
-fi
+# Défault du dossier de partage
+DossierPartage = Argument $1 "/Partage"
 
 #création du dossier partagé si celui-ci n'existe pas encore
 if [ ! -d $DossierPartage ]

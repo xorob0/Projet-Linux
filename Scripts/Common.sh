@@ -29,3 +29,13 @@ function Installe {
 		fi
 	fi
 }
+
+function Argument {
+	# Si le premier argument est vide on retourne le deuxième
+	if [ -z "$1" ]
+	then
+		return "$2"
+	else
+		return "$1"
+	fi
+}
