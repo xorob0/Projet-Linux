@@ -9,9 +9,28 @@ then
 		exit
 fi
 
+# Le premier argument est le dossier de partage desiré
+DossierPartage = "$1"
+
+# Si il n'y a pas d'argument, on partage /Partage
+if [ -z "$DossierPartage" ]
+then
+	$DossierPartage = "/Partage"
+fi
+
+#création du dossier partagé si celui-ci n'existe pas encore
+if [ ! -d $DossierPartage ]
+then
+	mkdir $DossierPartage
+fi
+
+#Modification des permissions d'accès
+chmod 755 $DossierPartage
+
+echo "Le dossier $DossierPartage est maintenant crée"
+
 # Installation du serveur nfs
-# L'option "-y" dit à yum de ne rien demander à l'utilisateur
-yum -y install nfs-utils &>/dev/null
+yum -y install nfs-utils &>/dev/null # L'option "-y" dit à yum de ne rien demander à l'utilisateur
 
 if EstInstalle nfs-utils
 then
@@ -29,11 +48,6 @@ systemctl enable nfs.service
 systemctl start rpcbind.service
 systemctl start nfs.service
 
-#création du dossier partagé
-mkdir /home/start
-
-#Modification des permissions d'accès
-chmod 755 /home
 
 #Configuration du fichier /etc/exports
 
