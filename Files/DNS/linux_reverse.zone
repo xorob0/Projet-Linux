@@ -1,0 +1,13 @@
+$TTL 3H
+@               IN      SOA      serveur.linux.lan. root.linux.lan. (
+                                        34565   ; serial
+                                        1D      ; refresh
+                                        1H      ; retry
+                                        1W      ; expire
+                                        3H )    ; minimum
+
+@               IN      NS      serveur.linux.lan.
+128		IN	PTR	serveur.linux.lan.
+129		IN	PTR	client1.linux.lan.
+130		IN	PTR	client2.linux.lan.
+
