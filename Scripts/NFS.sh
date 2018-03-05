@@ -1,14 +1,23 @@
 #!/bin/bash
+source Common.sh
+
 # Vérification de l'utilisateur
 if [ "$EUID" -ne 0 ]
-  then 
+then 
 		echo "Vous devez lancer ce script en tant que root"
 		echo "Ré-essayez avec \"sudo ./NFS.sh\""
 		exit
 fi
 
-#Installation du serveur nfs
-yum install nfs-utils
+# Installation du serveur nfs
+# L'option "-y" dit à yum de ne rien demander à l'utilisateur
+yum -y install nfs-utils
+if EstInstalle nfs-utils
+then
+	echo "Impossible d'installer le package \"nfs-utils\""
+	echo "Vérifiez votre connexion internet et réessayez !"
+	exit
+fi
 
 #Activation et démarrage  des services nfs au boot
 chkconfig nfs on
