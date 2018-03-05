@@ -2,6 +2,8 @@
 
 source Common.sh
 
+RootCheck
+
 # Installation des paquet
 Installe "bind" "bind-utils"
 

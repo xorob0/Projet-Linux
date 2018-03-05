@@ -2,6 +2,8 @@
 
 source Common.sh
 
+RootCheck
+
 IP = Argument $1 "192.168.1.2"
 MASK = Argument $2 "255.255.255.0"
 GATEWAY = Argument $3 "192.168.1.1"

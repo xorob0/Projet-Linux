@@ -1,13 +1,7 @@
 #!/bin/bash
 source Common.sh
 
-# Vérification de l'utilisateur
-if [ "$EUID" -ne 0 ]
-then 
-		echo "Vous devez lancer ce script en tant que root"
-		echo "Ré-essayez avec \"sudo ./NFS.sh\""
-		exit
-fi
+RootCheck
 
 # Défault du dossier de partage
 DossierPartage = Argument $1 "/Partage"

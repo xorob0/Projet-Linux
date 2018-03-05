@@ -39,3 +39,12 @@ function Argument {
 		return "$1"
 	fi
 }
+
+function RootCheck {
+	if [ "$EUID" -ne 0 ]
+	then 
+			echo "Vous devez lancer ce script en tant que root"
+			echo "Ré-essayez avec \"sudo ./$0\""
+			exit
+	fi
+}
