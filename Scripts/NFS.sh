@@ -30,16 +30,7 @@ chmod 755 $DossierPartage
 echo "Le dossier $DossierPartage est maintenant crée"
 
 # Installation du serveur nfs
-yum -y install nfs-utils &>/dev/null # L'option "-y" dit à yum de ne rien demander à l'utilisateur
-
-if EstInstalle nfs-utils
-then
-	echo "Impossible d'installer le package \"nfs-utils\""
-	echo "Vérifiez votre connexion internet et réessayez !"
-	exit
-else
-	echo "NFS est maintenant installé"
-fi
+Installe nfs-utils
 
 #Activation et démarrage des services nfs au boot
 chkconfig nfs on

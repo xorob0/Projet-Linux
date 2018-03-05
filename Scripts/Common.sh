@@ -11,3 +11,21 @@ function EstInstalle {
     false
   fi
 }
+
+function Installe {
+	if EstInstalle "$@"
+	then
+		echo "$@ est/sont déjà installé"
+	else
+		yum -y install "$@" &>/dev/null # Tentative d'installation du paquet
+
+		if EstInstalle "$@" # Vérification que le paquet à été correctement installé
+		then
+			echo "$@ est/sont maintenant installé(s)"
+		else
+			echo "Impossible d'installer le(s) package(s) \"$@\""
+			echo "Vérifiez votre connexion internet et réessayez !"
+			exit
+		fi
+	fi
+}

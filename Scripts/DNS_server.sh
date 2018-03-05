@@ -2,14 +2,9 @@
 
 source Common.sh
 
-#On vérifie d'abord si le package bind-utils est installé
+# Installation des paquet
+Installe "bind" "bind-utils"
 
-nomPaquet="bind.x86_64"
-
-if [ $(rpm -q $nomPaquet | grep "le paquet" ) ]
-then
-   yum install bind bind-utils
-fi
 systemctl enable named.service
 systemctl start  named.service
 #Ajout de l'adresse IP du seveur DNS si pas déjà fais dans le fichier de config réseau et dans /etc/resolv.conf "nameserver 192.168.65.128"
