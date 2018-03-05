@@ -11,19 +11,23 @@ fi
 
 # Installation du serveur nfs
 # L'option "-y" dit à yum de ne rien demander à l'utilisateur
-yum -y install nfs-utils
+yum -y install nfs-utils &>/dev/null
+
 if EstInstalle nfs-utils
 then
 	echo "Impossible d'installer le package \"nfs-utils\""
 	echo "Vérifiez votre connexion internet et réessayez !"
 	exit
+else
+	echo "NFS est maintenant installé"
 fi
 
 #Activation et démarrage  des services nfs au boot
 chkconfig nfs on
 systemctl enable rpcbind.service
-systemctl start nfs.service
+systemctl enable nfs.service
 systemctl start rpcbind.service
+systemctl start nfs.service
 
 #création du dossier partagé
 mkdir /home/start
