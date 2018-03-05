@@ -41,7 +41,7 @@ else
 	echo "NFS est maintenant installé"
 fi
 
-#Activation et démarrage  des services nfs au boot
+#Activation et démarrage des services nfs au boot
 chkconfig nfs on
 systemctl enable rpcbind.service
 systemctl enable nfs.service
@@ -50,9 +50,6 @@ systemctl start nfs.service
 
 
 #Configuration du fichier /etc/exports
-
-#Redémarrage du service nfs
-systemctl restart nfs.service
 
 #On exporte le partage
 exportfs -a
