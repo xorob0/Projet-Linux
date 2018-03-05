@@ -1,16 +1,13 @@
 #!/bin/bash
 
-#Configuration de l'interface réseau  ens33
-#ATTENTION, se mettre en NAT et executer en admin
-#ATTENTION, le nom de l'interface peut changer en fontion de la vm
+source Common.sh
 
-read -p "Entrez l'adresse IP" IP
-read -p "Entrez le masque de sous réseau" MASK
-read -p "Entrez votre gateway" GATEWAY
-read -p "Entrez votre DNS (Entrer pour 8.8.8.8)" DNS
+IP = Argument $1 "192.168.1.2"
+MASK = Argument $2 "255.255.255.0"
+GATEWAY = Argument $3 "192.168.1.1"
+DNS = Arguemnt $4 "8.8.8.8"
+CARD = Argument $5 `ip link show | grep "2: " | cut -d " " -f2 | sed "s/://"`
 
-echo "Voici la liste de vos cartes réseau :"
-read -p "Entrez votre carte réseau" CARD
 
 echo "TYPE=Ethernet
 BOOTPROTO=static
