@@ -1,5 +1,7 @@
 #!bin/bash
 
+source Common.sh
+
 #On vérifie d'abord si le package bind-utils est installé
 
 nomPaquet="bind.x86_64"
