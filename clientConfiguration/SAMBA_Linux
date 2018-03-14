@@ -1,0 +1,6 @@
+Vérifier si libsmbclient est installé
+
+> smbclient //192.168.65.128/homes --user linuxClient
+
+> smbclient //192.168.65.128/sharedFolder --user user1
+> smbclient //192.168.65.128/sharedFolder --user user2

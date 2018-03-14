@@ -1,0 +1,15 @@
+Installation ssh
+
+On génère une clé RSA et on stocke la clé privé dans /root/.ssh/id_rsa, ensuite on défini le mdp (passphrase = Test123*).
+Cette procédure va permettre d'établir une connexion SSH par clé asymétrique. La clef publique est stockée dans un fichier qui porte le même nom plus une extension .pub
+ 
+> ssh-keygen -t rsa
+
+#On copie la clé public du client du dossier /root/.ssh/id_rsa.pub dans celle de l'utilisateur du serveur pour pouvoir s'y connecter sans mdp mais avec clé rsa
+
+> ssh-copy-id -i /root/.ssh/id_rsa.pub linuxClient@192.168.65.128
+> ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.65.128
+
+#On se connecte 
+
+> ssh linuxClient@192.168.65.128

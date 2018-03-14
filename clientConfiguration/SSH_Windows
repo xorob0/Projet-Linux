@@ -1,0 +1,16 @@
+1) On teste la connexion avec Putty en rentrant l'IP du serveur linux
+
+2) On ouvre Puttygen et on génère une clé (réalisé en fonction du mouvement de la souris). On save la clé publique et privé
+
+3) On copie la clé indiqué dans le presse papier et on se reconnecte en SSH
+
+4) Si on ne s'est pas connecté au préalable depuis un client linux, il faut créer le répertoire /.ssh/authorized_keys et coller la clé dans le fichier (si un client linux s'est déjà connecté, on a juste à aller à la ligne et rajouter la clé)
+
+ATTENTION, il faut changer les permissions
+> chmod g-w /home/your_user
+> chmod 700 /home/your_user/.ssh
+> chmod 600 /home/your_user/.ssh/authorized_keys
+
+5) Dans putty, dans Category, SSH, Auth, on choisis la clé privé et on sauvegarde le profil
+
+6) On se connecte et on indique le login
