@@ -14,7 +14,8 @@
 # SELinux about this change.
 # semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
 #
-#Port 22
+# Utilisation du port 774 
+Port 774
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -35,10 +36,14 @@ SyslogFacility AUTHPRIV
 # Authentication:
 
 #LoginGraceTime 2m
-#PermitRootLogin yes
+# Interdiction de se logger avec root
+PermitRootLogin no
 #StrictModes yes
 #MaxAuthTries 6
-#MaxSessions 10
+# 2 sessions à la fois maximum
+MaxSessions 2
+# Authorisation de connexion uniquement pour les utilisateur du group sshallow
+AllowGroups sshallow
 
 #PubkeyAuthentication yes
 
@@ -76,7 +81,8 @@ ChallengeResponseAuthentication no
 #KerberosUseKuserok yes
 
 # GSSAPI options
-GSSAPIAuthentication yes
+# Désactivation de GSS-API car nous ne l'utiliserons pas
+GSSAPIAuthentication no
 GSSAPICleanupCredentials no
 #GSSAPIStrictAcceptorCheck yes
 #GSSAPIKeyExchange no
@@ -93,12 +99,14 @@ GSSAPICleanupCredentials no
 # and ChallengeResponseAuthentication to 'no'.
 # WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
 # problems.
-UsePAM yes
+# Désaction du PAM car nous ne l'utiliserons pas et il peut représenter un faille importante
+UsePAM no
 
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
-X11Forwarding yes
+# Nous n'utiliserons pas X11
+X11Forwarding no
 #X11DisplayOffset 10
 #X11UseLocalhost yes
 #PermitTTY yes
@@ -120,13 +128,14 @@ X11Forwarding yes
 #VersionAddendum none
 
 # no default banner path
-#Banner none
+Banner /etc/ssh/banner
 
 # Accept locale-related environment variables
 AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
 AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
 AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
-AcceptEnv XMODIFIERS
+# Pas d'utilisation de X11
+#AcceptEnv XMODIFIERS
 
 # override default of no subsystems
 Subsystem	sftp	/usr/libexec/openssh/sftp-server
