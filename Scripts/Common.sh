@@ -17,7 +17,7 @@ function Installe {
 	then
 		echo "$@ est/sont déjà installé"
 	else
-		yum -y install "$@" &>/dev/null # Tentative d'installation du paquet
+		yum -y install "$@" &> /dev/null # Tentative d'installation du paquet
 
 		if EstInstalle "$@" # Vérification que le paquet à été correctement installé
 		then
@@ -50,10 +50,12 @@ function RootCheck {
 }
 
 function Service {
-	if ! systemctl restart $1 > /dev/null
+	if ! systemctl restart $1
 	then
 		echo "Erreur lors du lancement du service"
+		exit 1
 	else
+		systemctl enable $1 &> /dev/null
 		echo "Le service à bien été lancé"
 	fi
 }
