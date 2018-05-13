@@ -13,9 +13,3 @@ sudo service sshd start
 #Il faut au minimum empêcher la connexion par mot de passe sur root et utiliser une authentification par clé asynchrone (rsa)
 
 #Pour une sécurité optimal, il faut empêcher l'accès en root par SSH avec le fichier de config sshd_config et gérer le fichier sudosers pour placer des droits sur les utilisateurs 
-
-
-
-
-
-
