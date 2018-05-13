@@ -12,7 +12,7 @@ if [ "$C" = "y" ] || [ "$C" = "Y" ]
 then
 	echo "Veuillez connecter votre Yubikey"
 	read
-	echo "Dans quel slot est configuré votre Challenge ?"
+	echo "Dans quel slot est configuré votre Challenge ?(1/2)"
 	read S
 	if [ "$S" = "1" ] || [ "$C" = "2" ]
 	then
@@ -22,6 +22,13 @@ then
 	else
 		echo "y" | ykpersonalize -a -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
 	fi
+fi
+
+echo "Permettre la connexion en ssh sur cet utilisateur ? (N/y)"
+read C
+if [ "$C" = "y" ] || [ "$C" = "Y" ]
+then
+	usermod -g sshallow $LOGIN
 fi
 
 
