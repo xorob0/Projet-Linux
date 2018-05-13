@@ -96,8 +96,7 @@ GSSAPICleanupCredentials no
 # and ChallengeResponseAuthentication to 'no'.
 # WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
 # problems.
-# Desactivation de PAM car inutile dans notre cas et cela pourrais representer une faille de securite si mal configure
-UsePAM no
+UsePAM yes
 
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
