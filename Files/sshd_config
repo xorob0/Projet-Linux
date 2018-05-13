@@ -14,8 +14,8 @@
 # SELinux about this change.
 # semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
 #
-# Utilisation du port 774 
-Port 774
+# Utilisation d'un port aléatoir
+Port 50683
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
