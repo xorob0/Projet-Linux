@@ -50,8 +50,7 @@ function RootCheck {
 }
 
 function Service {
-	sate=systemctl start $1
-	if !state
+	if !systemctl start $1 > /dev/null
 	then
 		echo "Erreur lors du lancement du service"
 	else

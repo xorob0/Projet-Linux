@@ -10,4 +10,4 @@ cp ../Files/sshd_config /etc/ssh/sshd_config
 cp ../Files/sshbanner /etc/ssh/banner
 
 #démarrage service sshd
-sudo service sshd start
+Service sshd
