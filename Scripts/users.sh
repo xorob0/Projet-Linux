@@ -18,9 +18,10 @@ then
 	then
 
 		mkdir /home/$LOGIN/.yubico
-		ykpamcfg -$S -p /home/$LOGIN/.yubico
-	else
-		echo "y" | ykpersonalize -a -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
+		ykpamcfg -$S -p /var/yubico
+		mv root-* $LOGIN-*
+	# else
+	# 	echo "y" | ykpersonalize -a -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
 	fi
 fi
 
