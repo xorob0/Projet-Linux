@@ -48,3 +48,13 @@ function RootCheck {
 			exit
 	fi
 }
+
+function Service {
+	sate=systemctl start $1
+	if !state
+	then
+		echo "Erreur lors du lancement du service"
+	else
+		echo "Le service à bien été lancé"
+	fi
+}
