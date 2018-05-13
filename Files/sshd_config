@@ -13,7 +13,7 @@
 # If you want to change the port on a SELinux system, you have to tell
 # SELinux about this change.
 # semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
-#
+# Utilisation d'un port aleatoire
 Port 50683
 #AddressFamily any
 #ListenAddress 0.0.0.0
@@ -35,9 +35,11 @@ SyslogFacility AUTHPRIV
 # Authentication:
 
 #LoginGraceTime 2m
+# Desactivation du login root
 PermitRootLogin no
 #StrictModes yes
 #MaxAuthTries 6
+# Maximum deux sessions actives en meme temps
 MaxSessions 2
 
 #PubkeyAuthentication yes
@@ -76,6 +78,7 @@ ChallengeResponseAuthentication no
 #KerberosUseKuserok yes
 
 # GSSAPI options
+# Desactivation de fonctionnalites inutiles dans notre cas
 GSSAPIAuthentication no
 GSSAPICleanupCredentials no
 #GSSAPIStrictAcceptorCheck yes
@@ -93,11 +96,13 @@ GSSAPICleanupCredentials no
 # and ChallengeResponseAuthentication to 'no'.
 # WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
 # problems.
+# Desactivation de PAM car inutile dans notre cas et cela pourrais representer une faille de securite si mal configure
 UsePAM no
 
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
+# Pas d'utilisation de X11 dans notre cas
 X11Forwarding no
 #X11DisplayOffset 10
 #X11UseLocalhost yes
@@ -119,7 +124,7 @@ X11Forwarding no
 #ChrootDirectory none
 #VersionAddendum none
 
-# no default banner path
+# Utilisation d'une banner
 Banner /etc/ssh/banner
 
 # Accept locale-related environment variables
