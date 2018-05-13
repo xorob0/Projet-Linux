@@ -17,9 +17,10 @@ then
 	if [ "$S" = "1" ] || [ "$C" = "2" ]
 	then
 
+		SERIAL=`ykinfo -s`
 		mkdir /home/$LOGIN/.yubico
-		ykpamcfg -$S -p /var/yubico
-		mv /var/yubico/root-* /var/yubico/$LOGIN-*
+		ykpamcfg -$S
+		mv /root/.yubico/challenge-* /var/yubico/$LOGIN-"${SERIAL: -7}"
 	# else
 	# 	echo "y" | ykpersonalize -a -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
 	fi
