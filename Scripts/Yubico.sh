@@ -2,8 +2,7 @@
 
 source Common.sh
 # Enabling EPEL
-yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 Installe pam_yubico
 
