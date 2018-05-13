@@ -16,13 +16,19 @@ then
 	read S
 	if [ "$S" = "1" ] || [ "$C" = "2" ]
 	then
-
 		SERIAL=`ykinfo -s`
 		mkdir /home/$LOGIN/.yubico
 		ykpamcfg -$S
 		mv /root/.yubico/challenge-* /var/yubico/$LOGIN-"${SERIAL: -7}"
-	# else
-	# 	echo "y" | ykpersonalize -a -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
+	else
+		echo "Dans quel slot voulez-vous configurer votre Cahllenge ? (1/2)"
+		read S
+
+	 	echo "y" | ykpersonalize -$S -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
+		SERIAL=`ykinfo -s`
+		mkdir /home/$LOGIN/.yubico
+		ykpamcfg -$S
+		mv /root/.yubico/challenge-* /var/yubico/$LOGIN-"${SERIAL: -7}"
 	fi
 fi
 
