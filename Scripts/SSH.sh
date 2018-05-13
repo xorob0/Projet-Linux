@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Installation du paquet open-ssh (vérification) permettant de partager un service ssh, par défaut il est normalement déjà installé
-yum install openssh-server
+yum install -y openssh-server
 
 #démarrage service sshd
 sudo service sshd start
