@@ -16,7 +16,9 @@ then
 	read S
 	if [ "$S" = "1" ] || [ "$C" = "2" ]
 	then
-		ykpamcfg -$S -p /home/$LOGIN/.yubico/
+
+		mkdir /home/$LOGIN/.yubico
+		ykpamcfg -$S -p /home/$LOGIN/.yubico
 	else
 		echo "y" | ykpersonalize -a -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
 	fi
