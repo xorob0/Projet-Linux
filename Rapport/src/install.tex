@@ -1,0 +1,22 @@
+\section{Installation}
+Pour l'installation nous avons suivis les étapes suivantes:
+\begin{itemize}
+	\item Mise en place de la machine avec l'iso bootable (sur machine virtuelle ou physique)
+	\item Sélection des locale (English US)
+	\item Modification de l'heure (Bruxelles)
+	\item Partitionnement manuel (LVM avec encryption AKA LUKS):
+	\begin{itemize}
+		\item /dev/sda1 monté sur /boot: 1024 Mo en XFS
+		\item LVM (encryptée)
+		\begin{itemize}
+			\item centos-root monté sur /: 5320 Mo en XFS
+			\item centos-home monté sur /home: 1023 Mo en XFS
+			\item centos-swap monté comme partition de swap: 819 Mo
+		\end{itemize}
+	\end{itemize}
+	\item Activation de la NIC (enp0s3)
+	\item Nom de domaine
+	\item Lancement de l'installation
+	\item Mise en place du mot de passe root
+\end{itemize}
+
