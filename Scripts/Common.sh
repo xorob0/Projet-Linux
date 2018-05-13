@@ -26,6 +26,7 @@ function Installe {
 				echo "$@ est maintenant installé"
 			else
 				echo "$@ sont maintenant installés"
+			fi
 
 		else
 			echo "Impossible d'installer le(s) package(s) \"$@\""
