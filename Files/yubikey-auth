@@ -1,0 +1,1 @@
+auth	required	pam_yubico.so mode=challenge-response chalresp_path=/var/yubico
