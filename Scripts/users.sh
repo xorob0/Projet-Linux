@@ -16,7 +16,7 @@ then
 	read S
 	if [ "$S" = "1" ] || [ "$C" = "2" ]
 	then
-		USER=$LOGIN ykpamcfg -$S -p /var/yubico/
+		ykpamcfg -$S -p /home/$LOGIN/.yubico/
 	else
 		echo "y" | ykpersonalize -a -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
 	fi
