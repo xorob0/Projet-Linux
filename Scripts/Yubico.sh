@@ -7,4 +7,5 @@ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarc
 # Installation du module PAM
 Installe pam_yubico
 
-cp ../Files
+cp ../Files/yubikey-auth /etc/pam.d/yubikey-auth
+cp ../Files/sshd /etc/pam.d/sshd
