@@ -21,7 +21,12 @@ function Installe {
 
 		if EstInstalle "$@" # Vérification que le paquet à été correctement installé
 		then
-			echo "$@ est/sont maintenant installé(s)"
+			if [ -z "$2" ]
+			then
+				echo "$@ est maintenant installé"
+			else
+				echo "$@ sont maintenant installés"
+
 		else
 			echo "Impossible d'installer le(s) package(s) \"$@\""
 			echo "Vérifiez votre connexion internet et réessayez !"
