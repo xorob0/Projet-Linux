@@ -5,14 +5,11 @@ RootCheck
 
 # Défault du dossier de partage
 DossierPartage = Argument $1 "/Partage"
-ARG = Argument $2 "rw,sync,no_root_squash,no_subtree_check)"
+ARG = Argument $2 "(rw,sync,no_root_squash,no_subtree_check)"
 IP = Argument $3 `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 
 #création du dossier partagé si celui-ci n'existe pas encore
-if [ ! -d $DossierPartage ]
-then
-	mkdir $DossierPartage
-fi
+mkdir -p $DossierPartage
 
 #Modification des permissions d'accès
 chmod 755 $DossierPartage

@@ -19,10 +19,7 @@ systemctl start smb.service
 systemctl enable smb.service
 
 #création du dossier partagé si celui-ci n'existe pas encore
-if [ ! -d $DossierPartage ]
-then
-	mkdir $DossierPartage
-fi
+mkdir -p $DossierPartage
 
 #Ajout du groupe sharedFolder contenant user1 et user2
 groupadd $GroupePartage
