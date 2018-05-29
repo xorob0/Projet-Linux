@@ -23,7 +23,7 @@ systemctl enable mysqld
 mysql_secure_installation
 
 #Option
-ENTER, Y, Y, Y, Y, Y
+#ENTER, Y, Y, Y, Y, Y
 
 # Règles firewall
 firewall-cmd --permanent --zone=trusted --add-source=192.0.2.10/32
