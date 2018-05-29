@@ -27,7 +27,6 @@ echo "Le dossier $DossierPartage est maintenant crée"
 Installe nfs-utils
 
 #Activation et démarrage des services nfs au boot
-chkconfig nfs on
 systemctl enable rpcbind.service
 systemctl enable nfs.service
 systemctl start rpcbind.service
