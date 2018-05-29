@@ -20,4 +20,4 @@ cp ntp.conf /etc/ntp.conf
 systemctl start ntpd 
 systemctl enable ntpd 
 
-echo "Le sercie ntp est maintenant installé et activé"
+echo "Le service NTP est maintenant installé et activé."
