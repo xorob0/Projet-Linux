@@ -6,8 +6,8 @@ source Common.sh
 Installe openssh-server
 
 # Utilsation du fichier de config
-cp ../Files/sshd_config /etc/ssh/sshd_config
-cp ../Files/sshbanner /etc/ssh/banner
+cp sshd_config /etc/ssh/sshd_config
+cp sshbanner /etc/ssh/banner
 
 #démarrage service sshd
 Service sshd
