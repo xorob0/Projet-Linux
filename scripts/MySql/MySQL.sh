@@ -20,7 +20,7 @@ systemctl enable mysqld
 /sbin/chkconfig --levels 235 mysqld on
 
 #Configuration du serveur 
-mysql_secure_installation
+# mysql_secure_installation
 
 #Option
 #ENTER, Y, Y, Y, Y, Y
