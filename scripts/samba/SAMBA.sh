@@ -13,10 +13,10 @@ GROUPE: Nom du groupe utilisé pour le partage (Defaut: GroupePartage)
 Aide $1 $s
 
 #On crée le dossier de partage
-DossierPartage=Argument $1 "/Partage"
-UserP=Argument $2 $USER
-NameP=Argument $3 $DossierPartage
-GroupePartage=$4 "GroupePartage"
+DossierPartage=`Argument $1 "/Partage"`
+UserP=`Argument $2 $USER`
+NameP=`Argument $3 $DossierPartage`
+GroupePartage=`Argument $4 "GroupePartage"`
 
 #Installation samba
 Installe samba
