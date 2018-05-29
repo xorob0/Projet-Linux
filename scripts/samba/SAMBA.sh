@@ -10,7 +10,7 @@ NOM: Nom du partage (Defaut: DOSSIER)
 GROUPE: Nom du groupe utilisé pour le partage (Defaut: GroupePartage)
 "
 
-Aide $1 s
+Aide $1 $s
 
 #On crée le dossier de partage
 DossierPartage = Argument $1 "/Partage"

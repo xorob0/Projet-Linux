@@ -9,7 +9,7 @@ ARGUMENTS: Arguments du partage nfs (Defaut: (rw,sync,no_root_squash,no_subtree_
 IP: Adresse ip du serveur (Defaut: adresse IP local de la machine)
 "
 
-Aide $1 d
+Aide $1 $s
 # Défault du dossier de partage
 DossierPartage = Argument $1 "/Partage"
 ARG = Argument $2 "(rw,sync,no_root_squash,no_subtree_check)"

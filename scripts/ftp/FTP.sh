@@ -6,7 +6,7 @@ s = './FTP.sh [DOSSIER]
 DOSSIER: Dossier de partage (Defaut: /Partage)
 '
 
-Aide $1 s
+Aide $1 $s
 
 Installe vsftp
 
