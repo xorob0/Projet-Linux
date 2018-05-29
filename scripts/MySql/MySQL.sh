@@ -1,10 +1,13 @@
 #!/bin/bash
-#Check de l'installation de mysql
-sudo yum install mariadb mariadb-server
+
+source ../Common.sh
+
+RootCheck
+
+Installe mysql-server
 
 #Démarrage et lancement du service au démarrage
-sudo service mariadb start
-sudo systemctl enable mariadb
+systemctl start mysqld
 
 #Configuration du serveur 
 mysql_secure_installation
@@ -34,4 +37,4 @@ ENTER, Y, Y, N, Y, Y
 
 
 #Connexion à la db
-mysql -u root -p
+# mysql -u root -p
