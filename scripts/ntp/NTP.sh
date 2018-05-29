@@ -7,11 +7,6 @@ RootCheck
 #Installation de NTP
 Installe ntp ntpdate ntp-doc
 
-#On stop le service du serveur de temps chronyd et on le désactive ou sup$
-systemctl stop chronyd
-systemctl disable chronyd
-echo "chronyd est maintenant désactivé"
-
 #On stop le service ntpd
 systemctl stop ntpd
 
