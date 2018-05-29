@@ -40,9 +40,9 @@ function Argument {
 	# Si le premier argument est vide on retourne le deuxième
 	if [ -z "$1" ]
 	then
-		echo "$2"
+		return "$2"
 	else
-		echo "$1"
+		return "$1"
 	fi
 }
 
