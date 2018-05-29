@@ -3,14 +3,14 @@
 souce ../Common.sh
 
 RootCheck
-
-Aide $1 " ./SAMBA.sh DOSSIER UTILISATEUR NOM GROUPE\n
-DOSSIER: Dossier de partage (Defaut: /Partage)\n
-UTILISATEUR: Utilisateur possédant les droits (Defaut: Utilisateur courant)\n
-NOM: Nom du partage (Defaut: DOSSIER)\n
+s = " ./SAMBA.sh DOSSIER UTILISATEUR NOM GROUPE
+DOSSIER: Dossier de partage (Defaut: /Partage)
+UTILISATEUR: Utilisateur possédant les droits (Defaut: Utilisateur courant)
+NOM: Nom du partage (Defaut: DOSSIER)
 GROUPE: Nom du groupe utilisé pour le partage (Defaut: GroupePartage)
 "
 
+Aide $1 s
 
 #On crée le dossier de partage
 DossierPartage = Argument $1 "/Partage"
