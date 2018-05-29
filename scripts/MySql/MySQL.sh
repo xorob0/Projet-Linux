@@ -19,8 +19,11 @@ systemctl enable mysqld
 # Lancer mysql avec le bon runlevel
 /sbin/chkconfig --levels 235 mysqld on
 
+TMPPWD=`cat /var/log/mysqld.log | grep temporary | grep  -oE '[^ ]+$'`
+echo " Your temporary password is $TMPPWD"
+
 #Configuration du serveur 
-# mysql_secure_installation
+mysql_secure_installation
 
 #Option
 #ENTER, Y, Y, Y, Y, Y
