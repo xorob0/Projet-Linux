@@ -10,7 +10,7 @@ Aide $1 $s
 
 Installe vsftp
 
-DossierPartage = Argument $1 "/Partage"
+DossierPartage=`Argument $1 "/Partage"`
 
 systemctl start vsftp.service
 systemctl enable vsftp.service
