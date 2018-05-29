@@ -2,8 +2,7 @@
 source ../Common.sh
 RootCheck
 
-Aide $1 "
-./FTP.sh [DOSSIER]
+Aide $1 "./FTP.sh [DOSSIER]\n
 DOSSIER: Dossier de partage (Defaut: /Partage)
 "
 
