@@ -4,14 +4,14 @@ source ../Common.sh
 
 RootCheck
 
-Installe mysql-community-server
-
 UserDB=`Argument $1 "user"`
 PWD=`Argument $2 "Test123*"`
 DB=`Argument $3 "database"`
 
 #Ajout de la repo
 rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rp://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+
+Installe mysql-community-server
 #Démarrage et lancement du service au démarrage
 systemctl start mysqld
 systemctl enable mysqld
