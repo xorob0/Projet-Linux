@@ -6,6 +6,12 @@ RootCheck
 
 Installe mysql-community-server
 
+UserDB=`Argument $1 "user"`
+PWD=`Argument $2 "Test123*"`
+DB=`Argument $3 "database"`
+
+#Ajout de la repo
+rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rp://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
 #Démarrage et lancement du service au démarrage
 systemctl start mysqld
 systemctl enable mysqld
@@ -17,8 +23,12 @@ systemctl enable mysqld
 mysql_secure_installation
 
 #Option
-ENTER, Y, Y, N, Y, Y
+ENTER, Y, Y, Y, Y, Y
 
+# Règles firewall
+firewall-cmd --permanent --zone=trusted --add-source=192.0.2.10/32
+firewall-cmd --permanent --zone=trusted --add-port=3306/tcp
+firewall-cmd  --reload
 #Setting the root password ensures that nobody can log into the MariaDB
 #root user without the proper authorisation.
 
