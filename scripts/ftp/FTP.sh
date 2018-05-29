@@ -2,9 +2,9 @@
 source ../Common.sh
 RootCheck
 
-Aide $1 "./FTP.sh [DOSSIER]
+Aide $1 './FTP.sh [DOSSIER]
 DOSSIER: Dossier de partage (Defaut: /Partage)
-"
+'
 
 Installe vsftp
 
