@@ -65,3 +65,11 @@ function Service {
 		echo "Le service à bien été lancé"
 	fi
 }
+
+function Aide {
+	if [ "$1" == "-h" ]
+	then
+		echo $2
+		exit
+	fi
+}
