@@ -2,7 +2,7 @@
 
 source ../Common.sh
 
-CheckRoot
+RootCheck
 
 Chemin=`Arguemnt $1 "/Backup"` # Le chemin peut aussi être sous la forme user@hostname:/path/to/repo
 PWD=`Argument $2 "Test123*"`
