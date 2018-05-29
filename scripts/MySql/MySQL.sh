@@ -25,10 +25,9 @@ firewall-cmd --permanent --zone=trusted --add-port=3306/tcp
 firewall-cmd  --reload
 
 TMPPWD=`cat /var/log/mysqld.log | grep temporary | grep  -oE '[^ ]+$'`
-echo " Your temporary password is $TMPPWD"
 
 #Configuration du serveur 
-mysql_secure_installation << echo $TMPPWD
+mysql_secure_installation -p$TMPPWD
 
 #Option
 #ENTER, Y, Y, Y, Y, Y
