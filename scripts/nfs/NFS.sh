@@ -3,7 +3,7 @@ source Common.sh
 
 RootCheck
 
-s = "./NFS.sh [DOSSIER] [ARGUMENTS] [IP]
+s="./NFS.sh [DOSSIER] [ARGUMENTS] [IP]
 DOSSIER: Dossier de partage (Defaut: /Partage)
 ARGUMENTS: Arguments du partage nfs (Defaut: (rw,sync,no_root_squash,no_subtree_check))
 IP: Adresse ip du serveur (Defaut: adresse IP local de la machine)
@@ -11,9 +11,9 @@ IP: Adresse ip du serveur (Defaut: adresse IP local de la machine)
 
 Aide $1 $s
 # Défault du dossier de partage
-DossierPartage = Argument $1 "/Partage"
-ARG = Argument $2 "(rw,sync,no_root_squash,no_subtree_check)"
-IP = Argument $3 `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
+DossierPartage=Argument $1 "/Partage"
+ARG=Argument $2 "(rw,sync,no_root_squash,no_subtree_check)"
+IP=Argument $3 `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 
 #création du dossier partagé si celui-ci n'existe pas encore
 mkdir -p $DossierPartage

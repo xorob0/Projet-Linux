@@ -3,7 +3,7 @@
 souce ../Common.sh
 
 RootCheck
-s = " ./SAMBA.sh DOSSIER UTILISATEUR NOM GROUPE
+s=" ./SAMBA.sh DOSSIER UTILISATEUR NOM GROUPE
 DOSSIER: Dossier de partage (Defaut: /Partage)
 UTILISATEUR: Utilisateur possédant les droits (Defaut: Utilisateur courant)
 NOM: Nom du partage (Defaut: DOSSIER)
@@ -13,10 +13,10 @@ GROUPE: Nom du groupe utilisé pour le partage (Defaut: GroupePartage)
 Aide $1 $s
 
 #On crée le dossier de partage
-DossierPartage = Argument $1 "/Partage"
-UserP = Argument $2 $USER
-NameP = Argument $3 $DossierPartage
-GroupePartage = $4 "GroupePartage"
+DossierPartage=Argument $1 "/Partage"
+UserP=Argument $2 $USER
+NameP=Argument $3 $DossierPartage
+GroupePartage=$4 "GroupePartage"
 
 #Installation samba
 Installe samba
@@ -42,13 +42,13 @@ smbpasswd -a $UserP
 # Copie des réglages de samba
 echo"
 [${NameP}]
-path = ${DossierPartage}
-comment = Partage crée par un script
-public = yes
-force directory mode = 777
-force create mode = 777
-writeable = yes
-browseable = yes" >> smb.conf
+path=${DossierPartage}
+comment=Partage crée par un script
+public=yes
+force directory mode=777
+force create mode=777
+writeable=yes
+browseable=yes" >> smb.conf
 cp smb.conf /etc/samba/smb.conf
 
 
