@@ -69,7 +69,7 @@ function Service {
 function Aide {
 	if [ "$1" == "-h" ]
 	then
-		echo $2
+		printf $2
 		exit
 	fi
 }
