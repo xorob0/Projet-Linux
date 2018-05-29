@@ -4,10 +4,14 @@ source ../Common.sh
 
 RootCheck
 
-Installe mysql-server
+Installe mysql-community-server
 
 #Démarrage et lancement du service au démarrage
 systemctl start mysqld
+systemctl enable mysqld
+
+# Lancer mysql avec le bon runlevel
+/sbin/chkconfig --levels 235 mysqld on
 
 #Configuration du serveur 
 mysql_secure_installation
