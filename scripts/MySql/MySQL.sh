@@ -19,6 +19,11 @@ systemctl enable mysqld
 # Lancer mysql avec le bon runlevel
 /sbin/chkconfig --levels 235 mysqld on
 
+# Règles firewall
+firewall-cmd --permanent --zone=trusted --add-source=192.0.2.10/32
+firewall-cmd --permanent --zone=trusted --add-port=3306/tcp
+firewall-cmd  --reload
+
 TMPPWD=`cat /var/log/mysqld.log | grep temporary | grep  -oE '[^ ]+$'`
 echo " Your temporary password is $TMPPWD"
 
@@ -28,10 +33,6 @@ mysql_secure_installation
 #Option
 #ENTER, Y, Y, Y, Y, Y
 
-# Règles firewall
-firewall-cmd --permanent --zone=trusted --add-source=192.0.2.10/32
-firewall-cmd --permanent --zone=trusted --add-port=3306/tcp
-firewall-cmd  --reload
 #Setting the root password ensures that nobody can log into the MariaDB
 #root user without the proper authorisation.
 
