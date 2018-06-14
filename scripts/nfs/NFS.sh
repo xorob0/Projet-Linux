@@ -1,18 +1,22 @@
 #!/bin/bash
-source Common.sh
+source ../Common.sh
 
 RootCheck
 
+s="./NFS.sh [DOSSIER] [ARGUMENTS] [IP]
+DOSSIER: Dossier de partage (Defaut: /Partage)
+ARGUMENTS: Arguments du partage nfs (Defaut: (rw,sync,no_root_squash,no_subtree_check))
+IP: Adresse ip du serveur (Defaut: adresse IP local de la machine)
+"
+
+Aide $1 $s
 # Défault du dossier de partage
-DossierPartage = Argument $1 "/Partage"
-ARG = Argument $2 "rw,sync,no_root_squash,no_subtree_check)"
-IP = Argument $3 `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
+DossierPartage=`Argument $1 "/Partage"`
+ARG=`Argument $2 "(rw,sync,no_root_squash,no_subtree_check)"`
+IP=`Argument $3 \`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'\``
 
 #création du dossier partagé si celui-ci n'existe pas encore
-if [ ! -d $DossierPartage ]
-then
-	mkdir $DossierPartage
-fi
+mkdir -p $DossierPartage
 
 #Modification des permissions d'accès
 chmod 755 $DossierPartage
@@ -23,7 +27,6 @@ echo "Le dossier $DossierPartage est maintenant crée"
 Installe nfs-utils
 
 #Activation et démarrage des services nfs au boot
-chkconfig nfs on
 systemctl enable rpcbind.service
 systemctl enable nfs.service
 systemctl start rpcbind.service

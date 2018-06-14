@@ -20,5 +20,4 @@ cp ntp.conf /etc/ntp.conf
 systemctl start ntpd 
 systemctl enable ntpd 
 
-#On  test si le serveur est bien configuré (il doit s'afficher)
-ntpq –p 
+echo "Le service NTP est maintenant installé et activé."

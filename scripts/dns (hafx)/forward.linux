@@ -1,0 +1,15 @@
+$TTL 86400
+@   IN  SOA     server.linux.lan. root.linux.lan. (
+        2011071001  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL
+)
+@       IN  NS  server.linux.lan.
+@       IN  A   192.168.188.34
+@       IN  A   192.168.188.26
+server  IN  A   192.168.188.34
+client  IN  A   192.168.188.26
+www.toto   IN CNAME      server
+www.tata  IN CNAME    server
