@@ -21,7 +21,7 @@ systemctl restart network.service
 # Création du fichier named
 
 echo "options {
-	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l\"ip du serveur*/
+	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l'ip du serveur*/
 	listen-on-v6 port 53 { ::1; };
 	directory 	\"/var/named\";
 	dump-file 	\"/var/named/data/cache_dump.db\";
