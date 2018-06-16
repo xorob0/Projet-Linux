@@ -55,7 +55,7 @@ echo "\$TTL 86400
 )
 @       IN  NS  $DOMAIN.lan.
 @       IN  A   $IP
-server  IN  A   192.168.188.34" > /etc/named/forward.$DOMAIN
+server  IN  A   $IP" > /etc/named/forward.$DOMAIN
 
 echo "\$TTL 86400
 @   IN  SOA     server.$DOMAIN.lan (
