@@ -46,7 +46,7 @@ echo "options {
 };" > /etc/named.conf
 
 echo "\$TTL 86400
-@   IN  SOA     server.$DOMAIN.lan root.$DOMAIN.lan. (
+@   IN  SOA     server.$DOMAIN.lan (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
@@ -58,7 +58,7 @@ echo "\$TTL 86400
 server  IN  A   192.168.188.34" > /etc/named/forward.$DOMAIN
 
 echo "\$TTL 86400
-@   IN  SOA     server.$DOMAIN.lan .root.$DOMAIN.lan. (
+@   IN  SOA     server.$DOMAIN.lan (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
