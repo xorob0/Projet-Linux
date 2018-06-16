@@ -4,7 +4,7 @@ source ../Common.sh
 
 RootCheck
 
-DOMAIN=`Argument $1 "linux.lan"`
+DOMAIN=`Argument $1 "linux"`
 
 IP=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 
