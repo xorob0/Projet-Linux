@@ -43,18 +43,6 @@ echo "options {
 
 	pid-file \"/run/named/named.pid\";
 	session-keyfile \"/run/named/session.key\";
-
-	zone \"$DOMAIN\" IN {
-	type master;
-	file \"forward.$DOMAIN\";
-	allow-update { none; };
-	};
-
-	zone \"$DOMAIN.reverse\" IN {
-	type master;
-	file \"reverse.$DOMAIN\";
-	allow-update { none; };
-	};
 };" > /etc/named.conf
 
 echo "$TTL 86400
