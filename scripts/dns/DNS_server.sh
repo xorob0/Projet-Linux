@@ -21,12 +21,12 @@ systemctl restart network.service
 # Création du fichier named
 
 echo "options {
-	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l'ip du serveur*/
+	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l\"ip du serveur*/
 	listen-on-v6 port 53 { ::1; };
-	directory 	'/var/named';
-	dump-file 	'/var/named/data/cache_dump.db';
-	statistics-file '/var/named/data/named_stats.txt';
-	memstatistics-file '/var/named/data/named_mem_stats.txt';
+	directory 	\"/var/named\";
+	dump-file 	\"/var/named/data/cache_dump.db\";
+	statistics-file \"/var/named/data/named_stats.txt\";
+	memstatistics-file \"/var/named/data/named_mem_stats.txt\";
         allow-query    { 0.0.0.0; }; /*ajout du reseau autorisé à query*/
 
     /* Securité à mettre en place pour s authentifier et etre sur que ça soit le bon*/
@@ -37,22 +37,22 @@ echo "options {
 	dnssec-validation yes;
 
 	/* Path to ISC DLV key*/
-	bindkeys-file '/etc/named.iscdlv.key';
+	bindkeys-file \"/etc/named.iscdlv.key\";
 
-	managed-keys-directory '/var/named/dynamic';
+	managed-keys-directory \"/var/named/dynamic\";
 
-	pid-file '/run/named/named.pid';
-	session-keyfile '/run/named/session.key';
+	pid-file \"/run/named/named.pid\";
+	session-keyfile \"/run/named/session.key\";
 
-	zone '$DOM' IN {
+	zone \"$DOM\" IN {
 	type master;
-	file 'forward.$DOM';
+	file \"forward.$DOM\";
 	allow-update { none; };
 	};
 
-	zone '$DOM.reverse' IN {
+	zone \"$DOM.reverse\" IN {
 	type master;
-	file 'reverse.$DOM';
+	file \"reverse.$DOM\";
 	allow-update { none; };
 	};
 };" > /etc/named.conf
