@@ -21,7 +21,7 @@ systemctl restart network.service
 # Création du fichier named
 
 echo "options {
-	listen-on port 53 { 127.0.0.1;${IP}; }; /*ajout de l'ip du serveur*/
+	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l'ip du serveur*/
 	listen-on-v6 port 53 { ::1; };
 	directory 	"/var/named";
 	dump-file 	"/var/named/data/cache_dump.db";
@@ -44,43 +44,43 @@ echo "options {
 	pid-file "/run/named/named.pid";
 	session-keyfile "/run/named/session.key";
 
-	zone "${DOM}" IN {
+	zone "$DOM" IN {
 	type master;
-	file "forward.${DOM}";
+	file "forward.$DOM";
 	allow-update { none; };
 	};
 
-	zone "${DOM}.reverse" IN {
+	zone "$DOM.reverse" IN {
 	type master;
-	file "reverse.${DOM}";
+	file "reverse.$DOM";
 	allow-update { none; };
 	};
 };" > /etc/named.conf
 
 echo "$TTL 86400
-@   IN  SOA     server.${DOM}.lan root.${DOM}.lan. (
+@   IN  SOA     server.$DOM.lan root.$DOM.lan. (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
         604800      ;Expire
         86400       ;Minimum TTL
 )
-@       IN  NS  ${DOM}.lan.
-@       IN  A   ${IP}
+@       IN  NS  $DOM.lan.
+@       IN  A   $IP
 server  IN  A   192.168.188.34" > /etc/named/forward.$DOM
 
 echo "$TTL 86400
-@   IN  SOA     server.${DOM}.lan .root.${DOM}.lan. (
+@   IN  SOA     server.$DOM.lan .root.$DOM.lan. (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
         604800      ;Expire
         86400       ;Minimum TTL
 )
-@        IN  NS      server.${DOM}.lan.
-@        IN  PTR     ${DOM}.lan.
-server   IN  A       ${IP}
-${IP}    IN  PTR     server.${DOM}.lan." > /etc/named/reverse.$DOM
+@        IN  NS      server.$DOM.lan.
+@        IN  PTR     $DOM.lan.
+server   IN  A       $IP
+${IP}    IN  PTR     server.$DOM.lan." > /etc/named/reverse.$DOM
 
 chown -v root:named /etc/named.conf
 systemctl restart named.service
