@@ -45,7 +45,7 @@ echo "options {
 	session-keyfile \"/run/named/session.key\";
 };" > /etc/named.conf
 
-echo "$TTL 86400
+echo "\$TTL 86400
 @   IN  SOA     server.$DOMAIN.lan root.$DOMAIN.lan. (
         2011071001  ;Serial
         3600        ;Refresh
@@ -57,7 +57,7 @@ echo "$TTL 86400
 @       IN  A   $IP
 server  IN  A   192.168.188.34" > /etc/named/forward.$DOMAIN
 
-echo "$TTL 86400
+echo "\$TTL 86400
 @   IN  SOA     server.$DOMAIN.lan .root.$DOMAIN.lan. (
         2011071001  ;Serial
         3600        ;Refresh
@@ -74,5 +74,5 @@ chown -v root:named /etc/named.conf
 systemctl restart named.service
 
 named-checkconf -v /etc/named.conf
-named-checkzone $DOMAIN.lan /var/named/forward.$DOMAIN
-named-checkzone $DOMAIN.lan /var/named/reverse.$DOMAIN
+named-checkzone $DOMAIN.lan /etc/named/forward.$DOMAIN
+named-checkzone $DOMAIN.lan /etc/named/reverse.$DOMAIN
