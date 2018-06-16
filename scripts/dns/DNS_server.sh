@@ -4,7 +4,7 @@ source ../Common.sh
 
 RootCheck
 
-DOM=`Argument $1 "linux.lan"`
+DOMAIN=`Argument $1 "linux.lan"`
 
 IP=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 
@@ -44,47 +44,47 @@ echo "options {
 	pid-file \"/run/named/named.pid\";
 	session-keyfile \"/run/named/session.key\";
 
-	zone \"$DOM\" IN {
+	zone \"$DOMAIN\" IN {
 	type master;
-	file \"forward.$DOM\";
+	file \"forward.$DOMAIN\";
 	allow-update { none; };
 	};
 
-	zone \"$DOM.reverse\" IN {
+	zone \"$DOMAIN.reverse\" IN {
 	type master;
-	file \"reverse.$DOM\";
+	file \"reverse.$DOMAIN\";
 	allow-update { none; };
 	};
 };" > /etc/named.conf
 
 echo "$TTL 86400
-@   IN  SOA     server.$DOM.lan root.$DOM.lan. (
+@   IN  SOA     server.$DOMAIN.lan root.$DOMAIN.lan. (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
         604800      ;Expire
         86400       ;Minimum TTL
 )
-@       IN  NS  $DOM.lan.
+@       IN  NS  $DOMAIN.lan.
 @       IN  A   $IP
-server  IN  A   192.168.188.34" > /etc/named/forward.$DOM
+server  IN  A   192.168.188.34" > /etc/named/forward.$DOMAIN
 
 echo "$TTL 86400
-@   IN  SOA     server.$DOM.lan .root.$DOM.lan. (
+@   IN  SOA     server.$DOMAIN.lan .root.$DOMAIN.lan. (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
         604800      ;Expire
         86400       ;Minimum TTL
 )
-@        IN  NS      server.$DOM.lan.
-@        IN  PTR     $DOM.lan.
+@        IN  NS      server.$DOMAIN.lan.
+@        IN  PTR     $DOMAIN.lan.
 server   IN  A       $IP
-${IP}    IN  PTR     server.$DOM.lan." > /etc/named/reverse.$DOM
+${IP}    IN  PTR     server.$DOMAIN.lan." > /etc/named/reverse.$DOMAIN
 
 chown -v root:named /etc/named.conf
 systemctl restart named.service
 
 named-checkconf -v /etc/named.conf
-named-checkzone $DOM.lan /var/named/forward.$DOM
-named-checkzone $DOM.lan /var/named/reverse.$DOM
+named-checkzone $DOMAIN.lan /var/named/forward.$DOMAIN
+named-checkzone $DOMAIN.lan /var/named/reverse.$DOMAIN
