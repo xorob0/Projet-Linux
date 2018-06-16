@@ -25,7 +25,7 @@ echo "options {
 	listen-on-v6 port 53 { ::1; };
 	directory 	'/var/named';
 	dump-file 	'/var/named/data/cache_dump.db';
-	statistics-file "/var/named/data/named_stats.txt";
+	statistics-file '/var/named/data/named_stats.txt';
 	memstatistics-file '/var/named/data/named_mem_stats.txt';
         allow-query    { 0.0.0.0; }; /*ajout du reseau autorisé à query*/
 
