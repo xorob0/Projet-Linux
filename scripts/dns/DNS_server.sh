@@ -6,7 +6,7 @@ RootCheck
 
 DOM=`Argument $1 "linux.lan"`
 
-IP=`Argument $2 \`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'\``
+IP=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 
 # Installation des paquet
 Installe "bind" "bind-utils"
