@@ -1,0 +1,15 @@
+\section{Serveurs de fichiers}
+Nous avons mis en place deux serveurs de fichier, un serveur NFS et un serveur Samba. 
+\subsection{Serveur NFS}
+Le serveur NFS (\textit{\textbf{N}etwork \textbf{F}ile \textbf{S}ystem}) permettant à un utilisateur d'accéder à des fichier sur un serveur de la même façon qu'il accèdes à des fichiers stoqués en local.
+
+\lstinputlisting[language=Bash]{../scripts/nfs/NFS.sh}
+
+Après avoir vérifié que l'utilisateur qui lance le script est bien root et importé les variables en argument, nous installons le serveur nfs si celui-ci n'est pas déjà installé. Ensuite nous créons le dossier de partage avec les bons droits et activons les processus requis pour le serveur. Finalemement nous ajoutons les dossier partagé ainsi que les arguments au fichier et partage et nous en informons le nfs.
+
+\subsection{Serveur SMB}
+Le serveur SMB (\textit{\textbf{S}erver \textbf{M}essage \textbf{B}lock}) permet à des ordinateur de partages des fichier et des imprimantes entre eux.
+
+\lstinputlisting[language=Bash]{../scripts/samba/SAMBA.sh}
+
+Tout d'abord nous intégrons un menu d'aide et nous importons les variables passées en arguments. Ensuite nous installons le serveur samba si celui-ci n'est pas encore installé et nous démarrons ses services.Nous créons le groupe relatif au partage et nous y ajoutons l'utilisateur. Maintenant il nous faut créer demander le mot de passe du partage à l'utilisateur et créer la configuration. Finalement nous redémarons le daemon.

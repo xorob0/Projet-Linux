@@ -28,10 +28,8 @@ echo "Le dossier $DossierPartage est maintenant crée"
 
 
 #Activation et démarrage des services nfs au boot
-systemctl enable rpcbind.service
-systemctl enable nfs.service
-systemctl start rpcbind.service
-systemctl start nfs.service
+Service rpcbind
+Service nfs
 
 
 #Configuration du fichier /etc/exports
