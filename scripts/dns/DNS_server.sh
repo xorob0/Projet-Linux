@@ -112,5 +112,5 @@ chown -v root:named /etc/named.conf
 systemctl restart named.service
 
 named-checkconf -v /etc/named.conf
-named-checkzone $DOMAIN.lan /etc/named/forward.$DOMAIN
-named-checkzone $DOMAIN.lan /etc/named/reverse.$DOMAIN
+named-checkzone $DOMAIN.lan /var/named/forward.$DOMAIN
+named-checkzone $DOMAIN.lan /var/named/reverse.$DOMAIN
