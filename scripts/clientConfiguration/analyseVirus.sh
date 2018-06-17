@@ -6,7 +6,7 @@ echo Arret du service freshclam et mise à jour
 
 service clam-freshclam stop
 
-freshclam
+sudo freshclam
 
 service clam-freshclam start
 
