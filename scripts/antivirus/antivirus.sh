@@ -2,11 +2,11 @@
 source ../Common.sh
 
 RootCheck
+
 #Check installation du support EPEL
 Installe epel-release
 
 #Installation de tous les composants de ClamAV
-
 Installe clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
 #Configuration du daemon Clam
