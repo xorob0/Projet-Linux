@@ -42,6 +42,40 @@ options {
 	pid-file \"/run/named/named.pid\";
 	session-keyfile \"/run/named/session.key\";
 };
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+
+
+/*Si domaine inconnu, aller voir dans named.ca*/
+
+zone "." IN {
+	type hint;
+	file "named.ca";
+};
+
+/*AJOUT DES ZONES*/
+
+zone "linux.lan" IN {
+type master;
+file "forward.linux";
+allow-update { none; };
+};
+
+zone "188.168.192.in-addr.arpa" IN {
+type master;
+file "reverse.linux";
+allow-update { none; };
+};
+
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
 " > /etc/named.conf
 
 echo "
