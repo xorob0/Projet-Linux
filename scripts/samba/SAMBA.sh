@@ -36,7 +36,7 @@ echo "Veuilez choisir un mot de passe pour l'utilisateur $UserP"
 smbpasswd -a $UserP
 
 # Copie des réglages de samba
-echo"
+echo "
 [${NameP}]
 path=${DossierPartage}
 comment=Partage crée par un script
