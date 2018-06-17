@@ -45,7 +45,7 @@ options {
 
 logging {
         channel default_debug {
-                file "data/named.run";
+                file \"data/named.run\";
                 severity dynamic;
         };
 };
@@ -54,28 +54,28 @@ logging {
 
 /*Si domaine inconnu, aller voir dans named.ca*/
 
-zone "." IN {
+zone \".\" IN {
 	type hint;
-	file "named.ca";
+	file \"named.ca\";
 };
 
 /*AJOUT DES ZONES*/
 
-zone "linux.lan" IN {
+zone \"linux.lan\" IN {
 type master;
-file "forward.linux";
+file \"forward.linux\";
 allow-update { none; };
 };
 
-zone "188.168.192.in-addr.arpa" IN {
+zone \"2.0.10.in-addr.arpa\" IN {
 type master;
-file "reverse.linux";
+file \"reverse.linux\";
 allow-update { none; };
 };
 
 
-include "/etc/named.rfc1912.zones";
-include "/etc/named.root.key";
+include \"/etc/named.rfc1912.zones\";
+include \"/etc/named.root.key\";
 " > /etc/named.conf
 
 echo "
