@@ -21,11 +21,10 @@ echo "veuillez rajouter l'option defaults,usrquota,grpquota à la place de defau
 
 #La modification de /etc/fstab doit préalablement être déjà effectué
 Installe quota
-
 mount -o remount /home
-quotacheck -cugv /home
-quotaon /home/
-edquota -u vsftp
+quotacheck -cufgv /home
+quotaon /home
+edquota -u ftp
 #On affiche les quotas
 repquota -as
 #Configuration periode de grace
