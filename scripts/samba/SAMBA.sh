@@ -27,9 +27,6 @@ Service smb
 #création du dossier partagé si celui-ci n'existe pas encore
 mkdir -p $DossierPartage
 
-#Ajout du groupe sharedFolder contenant user1 et user2
-groupadd $GroupePartage
-useradd -g sharedFolder $UserP
 
 #On gère les permissions du dossier partagé
 chmod 770 $DossierPartage
@@ -39,7 +36,7 @@ echo "Veuilez choisir un mot de passe pour l'utilisateur $UserP"
 smbpasswd -a $UserP
 
 # Copie des réglages de samba
-echo"
+echo "
 [${NameP}]
 path=${DossierPartage}
 comment=Partage crée par un script
