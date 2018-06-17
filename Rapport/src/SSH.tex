@@ -1,0 +1,6 @@
+\section{Connexion SSH}
+Pour l'administration à distance nous avons décicé d'utilier SSH (\textit{\textbf{S}ecure \textbf{SH}ell}) car se protocol est plus sécurisé que Telnet. Pour la connexion nous n'autorisons que l'authentification avec une clé RSA ou avec un mot de passe et un facteur de double autentification. Pour la double autentification nous avons décidé d'utiliser une clé Yubikey, ce facteur étant physique cela limite fortement l'accès aux personnes non-authorisée. Nous avons choisi de permettre une autre méthode d'authentification car l'utilisation d'une clé RSA seule est un risque en cas de perte du fichier et nous voulions toujours pouvoir être capable d'administer notre serveur même si ce fichier est perdu ou corrompu.
+
+\lstinputlisting[language=Bash]{../scripts/ssh/SSH.sh}
+
+Après avoir vérifié que l'utilisateur qui lance les script est bien root et installé le serveur openSSH si celui-ci n'étais pas déjà installé, nous copions simplement le fichier de configuration et la bannière au bon endroit. Pour finir nous lançons et activons au demarrage le daemon.
