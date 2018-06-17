@@ -48,6 +48,7 @@ echo "Avez-vous rajouté l'option defaults,usrquota,grpquota à la place de defa
 read F
 
 if ([ "$Q" = "y" ] || [ "$Q" = "Y" ])  && ([ "$F" = "y" ] || [ "$F" = "Y" ])
+	then
 	#On met le quota, le quotaon et quotacheck ainsi que l'edition du fichier /etc/fstab
 	#doivent être fait préalablement
 	Installe quota
@@ -62,6 +63,7 @@ if ([ "$Q" = "y" ] || [ "$Q" = "Y" ])  && ([ "$F" = "y" ] || [ "$F" = "Y" ])
 	echo "Voulez-vous modifier la période de grâce ? (N/y)"
 	read P
 	if [ "$P" = "y" ] || [ "$P" = "Y" ]
+	then
 	edquota -t
 	fi
 fi
