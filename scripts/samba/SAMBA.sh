@@ -1,6 +1,6 @@
 #/bin/bash
 
-souce ../Common.sh
+source ../Common.sh
 
 RootCheck
 s=" ./SAMBA.sh DOSSIER UTILISATEUR NOM GROUPE
@@ -55,3 +55,22 @@ setenforce 0
 
 #Redémarrage du service smb
 sudo systemctl restart smb.service
+
+#quota
+echo "veuillez rajouter l'option defaults,usrquota,grpquota à la place de defaults sur la partition voulu dans le fichier /etc/fstab"
+
+#La modification de /etc/fstab doit préalablement être déjà effectué
+Installe quota
+mount -o remount /home
+quotacheck -cufgv /home
+quotaon /home
+edquota -g  $GroupePartage
+#On affiche les quotas
+repquota -as
+#Configuration periode de grace
+echo "Voulez-vous modifier la période de grâce ? (N/y)"
+read P
+if [ "$P" = "y" ] || [ "$P" = "Y" ]
+    then
+    edquota -t
+fi
