@@ -12,8 +12,7 @@ Installe vsftpd
 
 DossierPartage=`Argument $1 "/home/Partage"`
 
-systemctl start vsftp.service
-systemctl enable vsftp.service
+Service vsftpd
 
 mkdir -p $DossierPartage
 
