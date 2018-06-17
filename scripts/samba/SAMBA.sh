@@ -28,9 +28,6 @@ Service smb
 #création du dossier partagé si celui-ci n'existe pas encore
 mkdir -p $DossierPartage
 
-#Ajout du groupe sharedFolder contenant user1 et user2
-groupadd $GroupePartage
-useradd -g sharedFolder $UserP
 
 #On gère les permissions du dossier partagé
 chmod 770 $DossierPartage
