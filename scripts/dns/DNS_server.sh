@@ -51,8 +51,8 @@ echo "options {
 	session-keyfile \"/run/named/session.key\";
 };" > /etc/named.conf
 
-echo "\$TTL 86400
-@   IN  SOA     root.$DOMAIN.lan server.$DOMAIN.lan (
+echo "
+@   IN  SOA     server.$DOMAIN.lan root.$DOMAIN.lan (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
@@ -64,7 +64,7 @@ echo "\$TTL 86400
 server  IN  A   $IP" > /etc/named/forward.$DOMAIN
 
 echo "\$TTL 86400
-@   IN  SOA      root.$DOMAIN.lan server.$DOMAIN.lan (
+@   IN  SOA      server.$DOMAIN.lan root.$DOMAIN.lan (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
@@ -74,7 +74,7 @@ echo "\$TTL 86400
 @        IN  NS      server.$DOMAIN.lan.
 @        IN  PTR     $DOMAIN.lan.
 server   IN  A       $IP
-${IP}    IN  PTR     server.$DOMAIN.lan." > /etc/named/reverse.$DOMAIN
+$IP    IN  PTR     server.$DOMAIN.lan." > /etc/named/reverse.$DOMAIN
 
 chown -v root:named /etc/named.conf
 systemctl restart named.service
