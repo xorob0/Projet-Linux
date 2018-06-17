@@ -7,6 +7,7 @@ RootCheck
 DOMAIN=`Argument $1 "linux"`
 SUBDOMAIN=`Argument $2 "toto"`
 
+# Génération des variables utilisées dans la configutation
 IP=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 NETID=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/' | cut -f1-3 -d'.'`
 HN=`hostname`
@@ -14,15 +15,10 @@ HN=`hostname`
 # Installation des paquet
 Installe "bind" "bind-utils"
 
-systemctl enable named.service
-systemctl start  named.service
-#Ajout de l'adresse IP du seveur DNS si pas déjà fais dans le fichier de config réseau et dans /etc/resolv.conf "nameserver 192.168.65.128"
+Service named
 systemctl restart network.service
-#Modification fichier /etc/named.conf
-#Création du fichier de zone "linux_forward.zone" et "linux_reverse.zone" dans var/named/ et configuration des  fichiers
 
 # Création du fichier named
-
 echo "
 options {
 	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l'ip du serveur*/
@@ -31,7 +27,7 @@ options {
 	dump-file 	\"/var/named/data/cache_dump.db\";
 	statistics-file \"/var/named/data/named_stats.txt\";
 	memstatistics-file \"/var/named/data/named_mem_stats.txt\";
-        allow-query    { $NETID; localhost; }; /*ajout du reseau autorisé à query*/
+        allow-query    { $NETID.0; localhost; }; /*ajout du reseau autorisé à query*/
 	recursion yes;   /*mis sur no */
 
 	dnssec-enable yes;
