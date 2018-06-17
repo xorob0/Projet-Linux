@@ -1,48 +1,73 @@
+#!/bin/bash
+source ../Common.sh
+
+Rootcheck
 #Check installation du support EPEL
-sudo yum install epel-release
+Installe epel-release
 
 #Installation de tous les composants de ClamAV
 
-sudo yum install clamav-server clamav-data clamav-update clamav-filesystem
+Installe clamav-server clamav-data clamav-update clamav-filesystem
 clamav clamav-scanner-systemd clamav-devel clamav-lib 
 clamav-server-systemd
 
 #Configuration du daemon Clam
-
 #Copie du template dans le cas où l'on a pas de fichier de configuration
-sudo cp /usr/share/clamav/template/clamd.conf /etc/clamd.d/clamd.conf
+cp /usr/share/clamav/template/clamd.conf /etc/clamd.d/clamd.conf
 
 #Activation de Freshclam pour garder la DB à jour
-sudo cp /etc/freshclam.conf /etc/freshclam.conf.bak
 
 #Création du service freshclam et configuration
-sudo nano /usr/lib/systemd/system/clam-freshclam.service
+echo "# Run the freshclam as daemon
+[Unit]
+Description = freshclam scanner
+After = network.target
+
+[Service]
+Type = forking
+ExecStart = /usr/bin/freshclam -d -c 4
+Restart = on-failure
+PrivateTmp = true
+
+[Install]
+WantedBy=multi-user.target" > /usr/lib/systemd/system/clam-freshclam.service
 
 #Démarrage et activation du service au démarrage
-sudo systemctl enable clam-freshclam.service
-sudo systemctl start clam-freshclam.service
+Service clam-freshclam.service
 
 #Changement des fichiers service autrement  clamd@.service ne démarre pas
-#On renomme le fichier
-sudo mv /usr/lib/systemd/system/clamd@.service /usr/lib/systemd/system/clamd.service
+#On renomme le fichier si on l'a pas déjà fais
+if [! -e "/usr/lib/systemd/system/clamd.service" ];then
+    mv /usr/lib/systemd/system/clamd@.service /usr/lib/systemd/system/clamd.service
+fi
 
 #On modifie le fichier clamd@scan.service et on change la référence vers
 # /lib/systemd/system/clamd.service
+echo ".include /lib/systemd/system/clamd.service
 
-sudo nano /usr/lib/systemd/system/clamd@scan.service 
+[Unit]
+Description = Generic clamav scanner daemon
+
+[Install]
+WantedBy = multi-user.target" > /usr/lib/systemd/system/clamd@scan.service
 
 #On modifie le fichier /usr/lib/systemd/system/clamd.service et on configure
+echo "[Unit]
+Description = clamd scanner daemon
+After = syslog.target nss-lookup.target network.target
 
-sudo  nano /usr/lib/systemd/system/clamd.service
+[Service]
+Type = simple
+ExecStart = /usr/sbin/clamd -c /etc/clamd.d/clamd.conf --foreground=yes
+Restart = on-failure
+PrivateTmp = true
+
+[Install]
+WantedBy=multi-user.target" > /usr/lib/systemd/system/clamd.service
 
 #Démarrage et automatistion des services 
-sudo systemctl enable clamd.service
-sudo systemctl enable clamd@scan.service
-sudo systemctl start clamd.service
-systemctl start clamd@scan.service
-
-#On peut tester l'antivirus
-clamscan -i -r /home
+Service clamd.service
+Service clamd@scan.service
 
 
 
