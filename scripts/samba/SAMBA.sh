@@ -2,7 +2,6 @@
 
 source ../Common.sh
 
-
 RootCheck
 s=" ./SAMBA.sh DOSSIER UTILISATEUR NOM GROUPE
 DOSSIER: Dossier de partage (Defaut: /Partage)
