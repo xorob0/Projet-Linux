@@ -15,6 +15,9 @@ DossierPartage=`Argument $1 "/Partage"`
 ARG=`Argument $2 "(rw,sync,no_root_squash,no_subtree_check)"`
 IP=`Argument $3 \`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'\``
 
+# Installation du serveur nfs
+Installe nfs-utils
+
 #création du dossier partagé si celui-ci n'existe pas encore
 mkdir -p $DossierPartage
 
@@ -23,8 +26,6 @@ chmod 755 $DossierPartage
 
 echo "Le dossier $DossierPartage est maintenant crée"
 
-# Installation du serveur nfs
-Installe nfs-utils
 
 #Activation et démarrage des services nfs au boot
 systemctl enable rpcbind.service
