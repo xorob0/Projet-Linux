@@ -23,6 +23,44 @@
 \usepackage{amsmath}
 % Lipsum
 \usepackage{lipsum}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.47,0.47,0.33}
+\definecolor{myorange}{rgb}{0.8,0.4,0}
+\definecolor{mywhite}{rgb}{0.98,0.98,0.98}
+\definecolor{myblue}{rgb}{0.01,0.61,0.98}
+
+\lstset{ %
+  backgroundcolor=\color{mywhite},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{mygray},
+  deletekeywords={...},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  frame=shadowbox,
+  keepspaces=true,
+  keywordstyle=\color{myorange},
+  language=Octave,
+  morekeywords={*,...},
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\tiny\color{mygray},
+  rulecolor=\color{black},
+  rulesepcolor=\color{myblue},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=2,
+  stringstyle=\color{myorange},
+  tabsize=2,
+  title=\lstname
+}
+\usepackage{float}
 
 \setcounter{secnumdepth}{5}
 
