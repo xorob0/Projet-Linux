@@ -5,8 +5,11 @@ source ../Common.sh
 RootCheck
 
 DOMAIN=`Argument $1 "linux"`
+SUBDOMAIN=`Argument $2 "toto"`
 
 IP=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
+NETID=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/' | cut -f1-3 -d'.'`
+HN=`hostname`
 
 # Installation des paquet
 Installe "bind" "bind-utils"
@@ -28,7 +31,7 @@ options {
 	dump-file 	\"/var/named/data/cache_dump.db\";
 	statistics-file \"/var/named/data/named_stats.txt\";
 	memstatistics-file \"/var/named/data/named_mem_stats.txt\";
-        allow-query    { 10.0.2.0/24; localhost; }; /*ajout du reseau autorisé à query*/
+        allow-query    { $NETID; localhost; }; /*ajout du reseau autorisé à query*/
 	recursion yes;   /*mis sur no */
 
 	dnssec-enable yes;
@@ -61,15 +64,15 @@ zone \".\" IN {
 
 /*AJOUT DES ZONES*/
 
-zone \"linux.lan\" IN {
+zone \"$DOMAIN.lan\" IN {
 type master;
-file \"forward.linux\";
+file \"forward.$DOMAIN\";
 allow-update { none; };
 };
 
 zone \"2.0.10.in-addr.arpa\" IN {
 type master;
-file \"reverse.linux\";
+file \"reverse.$DOMAIN\";
 allow-update { none; };
 };
 
@@ -80,32 +83,31 @@ include \"/etc/named.root.key\";
 
 echo "
 \$TTL 86400
-@   IN  SOA     projet.linux.lan. root.linux.lan. (
+@   IN  SOA     $HN.$DOMAIN.lan. root.$DOMAIN.lan. (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
         604800      ;Expire
         86400       ;Minimum TTL
 )
-@       IN  NS  projet.linux.lan.
+@       IN  NS  $HN.$DOMAIN.lan.
 projet  IN  A   $IP
-www.tata   IN CNAME    projet
-www.toto   IN CNAME    projet
+$SUBDOMAIN   IN CNAME    $HN
 " > /var/named/forward.$DOMAIN
 
 echo "
 \$TTL 86400
-@   IN  SOA     projet.linux.lan. root.linux.lan. (
+@   IN  SOA     $HN.$DOMAIN.lan. root.$DOMAIN.lan. (
         2011071001  ;Serial
         3600        ;Refresh
         1800        ;Retry
         604800      ;Expire
         86400       ;Minimum TTL
 )
-@        IN  NS      projet.linux.lan.
-@        IN  PTR     linux.lan.
+@        IN  NS      $HN.$DOMAIN.lan.
+@        IN  PTR     $DOMAIN.lan.
 projet   IN  A       $IP
-15       IN  PTR     projet.linux.lan.
+15       IN  PTR     $HN.$DOMAIN.lan.
 " > /var/named/reverse.$DOMAIN
 
 chown -v root:named /etc/named.conf
