@@ -15,3 +15,8 @@ echo "Listen $PORT" >> httpd.conf
 cp httpd.conf /etc/httpd/conf/httpd.conf
 
 echo "coucou" > /var/www/html/index.html
+
+iptables -A INPUT -p tcp --dport $PORT -j ACCEPT
+iptables -A OUTPUT -p tcp --sport $PORT  -j ACCEPT
+
+

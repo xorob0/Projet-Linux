@@ -1,0 +1,15 @@
+\section{Anti-virus}
+\lstinputlisting[language=Bash]{../scripts/antivirus/antivirus.sh}
+Ce script va permettre d’installer l’antivirus sur le serveur pour amélioré sa sécurité
+On vérifie d’abord que l’utilisateur exécute bien le script en tant que root, ce qui est nécessaire pour configurer les fichiers de ClamAV.
+On installe ensuite EPEL (Extra Package for Entreprise Linux) qui est un repo fournissant des package additionnels pour les distributions de type RedHat/CentOs.
+
+Ensuite, au cas où on ne possède pas de fichier de configuration, on copie le template clamd.conf. On peut créer le service freshclam  et le configurer de sortie qu’il vérifie 4 fois par jour la précense de mise à jour. On le démarre et on l’active au démarrage ensuite.
+
+On renomme également le fichier /usr/lib/systemd/system/clamd@.service en /usr/lib/systemd/system/clamd.service autrement, par défaut le service ne fonctionne pas. Puis, il faut indiquer le bon chemin du clamd.service dans le fichier /usr/lib/systemd/system/clamd@scan.service et on peut configurer le fichier clamd.service
+Les dernières lignes vont pemettre d’activer et de démarrer automatiquement les services clamd et clamd@scan au démarrage
+
+\lstinputlisting[language=Bash]{../scripts/antivirus/analyseVirus.sh}
+
+Ce script va permettre d’exécuter une analyse virale d’un dossier ou fichier choisis par l’utilisateur qui lance le script.
+On met d’abord à jour la base de données de l’antivirus et puis on demande à l’utilisateur de spécifier la cible. Si elle existe, on procède à l’analyse.

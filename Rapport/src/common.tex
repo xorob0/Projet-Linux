@@ -1,0 +1,10 @@
+\section{Scripts communs}
+\lstinputlisting[language=Bash]{../scripts/Common.sh}
+Dans ce fichier nous déclarons plusieurs fonctions utilisée dans plusieurs scripts. Les fonctions sont les suivantes:
+\begin{itemize}
+	\item Installe : Installe un paquet si celui-ci n'est pas installé.
+	\item Argument : Retourne le string passé en argument au programme et s'il n'y en a pas retourne l'argument par défaut.
+	\item RootCheck : Vérifie que l'utilisateur qui lance le script est bien root.
+	\item Service : Start puis enable un service.
+	\item Aide : Retourne un string d'aide si l'utilisateur le demande avec l'argument -h.
+\end{itemize}

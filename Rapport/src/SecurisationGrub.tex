@@ -1,0 +1,12 @@
+\section{Mot de passe sur }
+Avec l'arrivée de CentOS 7.2, un nouvel utilitaire a été implémenté pour mettre facilement un mot de passe au chargement de grub.
+Il suffit d'utiliser la commande : \texttt{grub2-setpassword}
+Entrer le mot de passe et le confirmer.
+Enfin, il faut modifier le fichier : \texttt{/boot/grub2/grub.cfg} et supprimer le paramètre \texttt{--unrestricted}
+\begin{lstlisting}
+### BEGIN /etc/grub.d/10_linux ###
+menuentry 'CentOS Linux (3.10.0-862.3.2.el7.x86_64) 7 (Core)' --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-3.10.0-693.el7.x86_64-advanced-e47f19c5-8992-40a8-b004-05d4fbe5996c' 
+
+	content...
+\end{lstlisting}
+
