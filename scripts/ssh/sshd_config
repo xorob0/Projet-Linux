@@ -14,7 +14,7 @@
 # SELinux about this change.
 # semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
 # Utilisation d'un port aleatoire
-Port 50683
+#Port 50683
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
