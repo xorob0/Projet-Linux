@@ -33,6 +33,12 @@ echo "options {
 
 	recursion yes;   
 
+    forward only;
+    forwarders {
+		1.1.1.1;
+		1.0.0.1;
+    };
+
 	dnssec-enable yes;
 	dnssec-validation yes;
 
