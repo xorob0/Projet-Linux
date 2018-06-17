@@ -8,7 +8,7 @@ DOSSIER: Dossier de partage (Defaut: /Partage)
 
 Aide $1 $s
 
-Installe vsftp
+Installe vsftpd
 
 DossierPartage=`Argument $1 "/Partage"`
 
