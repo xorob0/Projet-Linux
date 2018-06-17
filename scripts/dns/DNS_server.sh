@@ -24,10 +24,10 @@ echo "
 options {
 	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l'ip du serveur*/
 	listen-on-v6 port 53 { ::1; };
-	directory 	"/var/named";
-	dump-file 	"/var/named/data/cache_dump.db";
-	statistics-file "/var/named/data/named_stats.txt";
-	memstatistics-file "/var/named/data/named_mem_stats.txt";
+	directory 	\"/var/named";
+	dump-file 	\"/var/named/data/cache_dump.db";
+	statistics-file \"/var/named/data/named_stats.txt";
+	memstatistics-file \"/var/named/data/named_mem_stats.txt";
         allow-query    { /TODO netid; localhost; }; /*ajout du reseau autorisé à query*/
 	recursion yes;   /*mis sur no */
 
@@ -35,12 +35,12 @@ options {
 	dnssec-validation yes;
 
 	/* Path to ISC DLV key*/
-	bindkeys-file "/etc/named.iscdlv.key";
+	bindkeys-file \"/etc/named.iscdlv.key";
 
-	managed-keys-directory "/var/named/dynamic";
+	managed-keys-directory \"/var/named/dynamic";
 
-	pid-file "/run/named/named.pid";
-	session-keyfile "/run/named/session.key";
+	pid-file \"/run/named/named.pid";
+	session-keyfile \"/run/named/session.key";
 };
 " > /etc/named.conf
 
