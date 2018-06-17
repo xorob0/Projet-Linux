@@ -3,3 +3,9 @@ Pour les utilsateurs nous avons optés pour un script intéractif. Nous demandon
 
 \lstinputlisting[language=Bash]{../scripts/user/users.sh}
 \lstinputlisting[language=Bash]{../scripts/user/Yubico.sh}
+Nous avons laissé la possibilité de créer un quota sur la partition /home lors de la création d’un utilisateur. 
+Pour que les quotas soient fonctionnels, il faut d’abord rajouter l’option usrquota et grpquota sur la partition /home comme si dessous
+
+\begin{lstlisting}
+/dev/mapper/cento-home /home	ext4	default,usrquota,grpquota	1 2
+\end{lstlisting}
