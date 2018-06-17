@@ -1,13 +1,7 @@
 \section{Serveur DNS}
-Le protocole NTP (Network Time Protocol) va permettre de synchroniser les horloges des ordinateurs connectés au même réseau local que celle du serveur de temps.
-Celui-ci devra synchroniser sa propre horloge en contactant un serveur de temps de référence à distance donc  par internet.
-Cette synchronisation des heures permettra entre autres de ne pas perturber certaines applications utilisant l’horloge du système mais aussi pour donner plus de cohérence en cas de comparaison des messages de « logs » de plusieurs ordinateurs sur le réseau.
+Le serveur DNS (\textit{\textbf{D}omain \textbf{N}ame \textbf{S}system}) permet de tranformer un nom de domaine en adresse IP.
 
-\lstinputlisting[language=Bash]{../scripts/ntp/NTP.sh}
+\lstinputlisting[language=Bash]{../scripts/dns/DNS_server.sh}
 
-On déclare d’abord le fichier de dérive « driftfile ». Il va permettre de corriger les dérives de l’horloge système en l’absence de connexion réseau au serveur de référence.
-On déclare ensuite le répertoire et le fichier pour stocker les « logs » du service ntpd. 
-On permet la synchronisation avec notre source de temps mais on interdit à la source de modifier ou d’interroger le service sur ce système.
-On autorise les accès sur l’interface de bouclage
-Ensuite, on se synchronise avec les serveurs NTP belge de référence. Pour résoudre les problèmes de charge on entre plusieurs adresse. Il s’agit d’un groupement de serveur et la redistribution se fait à l’aide du Round Robin DNS (association de plusieurs adresses IP à un FQDN)
-Enfin, on précise au serveur de se synchroniser sur l’ « Undisciplined Local Clock » et on indique un faux « pilote » destiné à la sauvegarde de l’heure dans le cas où aucune source externe d’heure synchronisée n’est disponible.
+Après avoir mis en place tout ce qui est nécéssaire pour utiliser le DNS, nous copions le fichier de config de Named avec en modifiant l'adresse IP. Ensuite nous copions les fichier de zone reverse et forward customisée avec les arguments entrés par l'utilisateur. 
+Finalement nous chargeons tout cela dans bind.
