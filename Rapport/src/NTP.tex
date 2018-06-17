@@ -4,6 +4,7 @@ Celui-ci devra synchroniser sa propre horloge en contactant un serveur de temps 
 Cette synchronisation des heures permettra entre autres de ne pas perturber certaines applications utilisant l’horloge du système mais aussi pour donner plus de cohérence en cas de comparaison des messages de « logs » de plusieurs ordinateurs sur le réseau.
 
 \lstinputlisting[language=Bash]{../scripts/ntp/NTP.sh}
+\lstinputlisting[language=Bash]{../scripts/ntp/ntp.conf}
 
 On déclare d’abord le fichier de dérive « driftfile ». Il va permettre de corriger les dérives de l’horloge système en l’absence de connexion réseau au serveur de référence.
 On déclare ensuite le répertoire et le fichier pour stocker les « logs » du service ntpd. 
