@@ -49,8 +49,6 @@ read F
 
 if ([ "$Q" = "y" ] || [ "$Q" = "Y" ])  && ([ "$F" = "y" ] || [ "$F" = "Y" ])
 	then
-	#On met le quota, le quotaon et quotacheck ainsi que l'edition du fichier /etc/fstab
-	#doivent être fait préalablement
 	Installe quota
 
 	mount -o remount /home
