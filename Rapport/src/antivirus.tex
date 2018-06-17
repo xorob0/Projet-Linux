@@ -1,8 +1,8 @@
 \section{Anti-virus}
 \lstinputlisting[language=Bash]{../scripts/antivirus/antivirus.sh}
-Ce script va permettre d’installer l’antivirus sur le serveur pour amélioré sa sécurité
+Ce script va permettre d’installer l’antivirus sur le serveur afin d'en améliorer sa sécurité.
 On vérifie d’abord que l’utilisateur exécute bien le script en tant que root, ce qui est nécessaire pour configurer les fichiers de ClamAV.
-On installe ensuite EPEL (Extra Package for Entreprise Linux) qui est un repo fournissant des package additionnels pour les distributions de type RedHat/CentOs.
+On installe ensuite EPEL (Extra Package for Entreprise Linux) qui est un repo fournissant des packages additionnels pour les distributions de type RedHat/CentOs.
 
 Ensuite, au cas où on ne possède pas de fichier de configuration, on copie le template clamd.conf. On peut créer le service freshclam  et le configurer de sortie qu’il vérifie 4 fois par jour la précense de mise à jour. On le démarre et on l’active au démarrage ensuite.
 
