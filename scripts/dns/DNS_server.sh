@@ -91,7 +91,7 @@ echo "
 projet  IN  A   $IP
 www.tata   IN CNAME    projet
 www.toto   IN CNAME    projet
-" > /etc/named/forward.$DOMAIN
+" > /var/named/forward.$DOMAIN
 
 echo "
 \$TTL 86400
@@ -106,7 +106,7 @@ echo "
 @        IN  PTR     linux.lan.
 projet   IN  A       $IP
 15       IN  PTR     projet.linux.lan.
-" > /etc/named/reverse.$DOMAIN
+" > /var/named/reverse.$DOMAIN
 
 chown -v root:named /etc/named.conf
 systemctl restart named.service
