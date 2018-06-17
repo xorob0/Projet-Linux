@@ -24,28 +24,62 @@ echo "
 options {
 	listen-on port 53 { 127.0.0.1;$IP; }; /*ajout de l'ip du serveur*/
 	listen-on-v6 port 53 { ::1; };
-	directory 	"/var/named";
-	dump-file 	"/var/named/data/cache_dump.db";
-	statistics-file "/var/named/data/named_stats.txt";
-	memstatistics-file "/var/named/data/named_mem_stats.txt";
-        allow-query    { /TODO netid; localhost; }; /*ajout du reseau autorisé à query*/
+	directory 	\"/var/named\";
+	dump-file 	\"/var/named/data/cache_dump.db\";
+	statistics-file \"/var/named/data/named_stats.txt\";
+	memstatistics-file \"/var/named/data/named_mem_stats.txt\";
+        allow-query    { 10.0.2.0/24; localhost; }; /*ajout du reseau autorisé à query*/
 	recursion yes;   /*mis sur no */
 
 	dnssec-enable yes;
 	dnssec-validation yes;
 
 	/* Path to ISC DLV key*/
-	bindkeys-file "/etc/named.iscdlv.key";
+	bindkeys-file \"/etc/named.iscdlv.key\";
 
-	managed-keys-directory "/var/named/dynamic";
+	managed-keys-directory \"/var/named/dynamic\";
 
-	pid-file "/run/named/named.pid";
-	session-keyfile "/run/named/session.key";
+	pid-file \"/run/named/named.pid\";
+	session-keyfile \"/run/named/session.key\";
 };
+
+logging {
+        channel default_debug {
+                file \"data/named.run\";
+                severity dynamic;
+        };
+};
+
+
+
+/*Si domaine inconnu, aller voir dans named.ca*/
+
+zone \".\" IN {
+	type hint;
+	file \"named.ca\";
+};
+
+/*AJOUT DES ZONES*/
+
+zone \"linux.lan\" IN {
+type master;
+file \"forward.linux\";
+allow-update { none; };
+};
+
+zone \"2.0.10.in-addr.arpa\" IN {
+type master;
+file \"reverse.linux\";
+allow-update { none; };
+};
+
+
+include \"/etc/named.rfc1912.zones\";
+include \"/etc/named.root.key\";
 " > /etc/named.conf
 
 echo "
-$TTL 86400
+\$TTL 86400
 @   IN  SOA     projet.linux.lan. root.linux.lan. (
         2011071001  ;Serial
         3600        ;Refresh
@@ -57,10 +91,10 @@ $TTL 86400
 projet  IN  A   $IP
 www.tata   IN CNAME    projet
 www.toto   IN CNAME    projet
-" > /etc/named/forward.$DOMAIN
+" > /var/named/forward.$DOMAIN
 
 echo "
-$TTL 86400
+\$TTL 86400
 @   IN  SOA     projet.linux.lan. root.linux.lan. (
         2011071001  ;Serial
         3600        ;Refresh
@@ -72,11 +106,11 @@ $TTL 86400
 @        IN  PTR     linux.lan.
 projet   IN  A       $IP
 15       IN  PTR     projet.linux.lan.
-" > /etc/named/reverse.$DOMAIN
+" > /var/named/reverse.$DOMAIN
 
 chown -v root:named /etc/named.conf
 systemctl restart named.service
 
 named-checkconf -v /etc/named.conf
-named-checkzone $DOMAIN.lan /etc/named/forward.$DOMAIN
-named-checkzone $DOMAIN.lan /etc/named/reverse.$DOMAIN
+named-checkzone $DOMAIN.lan /var/named/forward.$DOMAIN
+named-checkzone $DOMAIN.lan /var/named/reverse.$DOMAIN
