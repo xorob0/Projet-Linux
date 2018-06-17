@@ -45,7 +45,7 @@ options {
 " > /etc/named.conf
 
 echo "
-$TTL 86400
+\$TTL 86400
 @   IN  SOA     projet.linux.lan. root.linux.lan. (
         2011071001  ;Serial
         3600        ;Refresh
@@ -60,7 +60,7 @@ www.toto   IN CNAME    projet
 " > /etc/named/forward.$DOMAIN
 
 echo "
-$TTL 86400
+\$TTL 86400
 @   IN  SOA     projet.linux.lan. root.linux.lan. (
         2011071001  ;Serial
         3600        ;Refresh
