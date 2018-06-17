@@ -1,6 +1,7 @@
 #/bin/bash
 
-souce ../Common.sh
+source ../Common.sh
+
 
 RootCheck
 s=" ./SAMBA.sh DOSSIER UTILISATEUR NOM GROUPE
