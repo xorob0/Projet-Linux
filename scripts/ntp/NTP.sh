@@ -17,7 +17,6 @@ ntpdate be.pool.ntp.org
 cp ntp.conf /etc/ntp.conf   
 
 #Démarrage et activation du service
-systemctl start ntpd 
-systemctl enable ntpd 
+Service ntpd
 
 echo "Le service NTP est maintenant installé et activé."
