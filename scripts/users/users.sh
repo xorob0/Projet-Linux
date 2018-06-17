@@ -1,4 +1,7 @@
 #!/bin/bash
+source ../Common.ssh
+
+RootCheck
 
 echo "Login:"
 read LOGIN
@@ -38,5 +41,31 @@ if [ "$C" = "y" ] || [ "$C" = "Y" ]
 then
 	usermod -g sshallow $LOGIN
 fi
+
+echo "Voulez-vous mettre un quota sur la partition home de cet utilisateur ? (N/y)"
+read Q
+echo "Avez-vous rajouté l'option defaults,usrquota,grpquota à la place de defaults sur la partition voulu dans le fichier /etc/fstab ? (N/y) "
+read F
+
+if ([ "$Q" = "y" ] || [ "$Q" = "Y" ])  && ([ "$F" = "y" ] || [ "$F" = "Y" ])
+	#On met le quota, le quotaon et quotacheck ainsi que l'edition du fichier /etc/fstab
+	#doivent être fait préalablement
+	Installe quota
+
+	mount -o remount /home
+	quotacheck -cugv /home
+	quotaon /home/
+	edquota -u $LOGIN
+	#On affiche les quotas
+	repquota -as
+	#Configuration periode de grace
+	echo "Voulez-vous modifier la période de grâce ? (N/y)"
+	read P
+	if [ "$P" = "y" ] || [ "$P" = "Y" ]
+	edquota -t
+	fi
+fi
+
+echo "L'utilisateur  $LOGIN a bien été créé"
 
 
