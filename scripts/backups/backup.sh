@@ -11,11 +11,12 @@ tmpfile="/tmp/borgcron"
 
 # Installation de python et de pip
 Installe python
-pip install --upgrade setuptools
 
 cd /tmp/
 curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 python get-pip.py
+
+pip install --upgrade setuptools
 
 # Installation de borg
 pip install borgbackup
