@@ -10,6 +10,7 @@ DATE=`date '+%Y%m%d%H%M%S'`
 tmpfile="/tmp/borgcron"
 
 # Installation de python et de pip
+Installe openssl openssl-devel
 Installe yum-utils
 Installe python36u
 
