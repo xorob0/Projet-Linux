@@ -26,7 +26,7 @@ pip3.6 install --upgrade setuptools
 pip3.6 install borgbackup
 
 # Inistialisation du repo borg
-borg init --encryption=$PWD $Chemin
+borg init --encryption=repokey $Chemin
 borg create $Chemin::$DATE /
 
 # Ajout de borg au crontab toute les heures
