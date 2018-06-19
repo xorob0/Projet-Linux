@@ -4,7 +4,7 @@ source ../Common.sh
 
 RootCheck
 
-ARG=`Argument $1 "22"`
+PORT=`Argument $1 "22"`
 
 #Installation du paquet open-ssh (vérification) permettant de partager un service ssh, par défaut il est normalement déjà installé
 Installe openssh-server
