@@ -10,16 +10,16 @@ DATE=`date '+%Y%m%d%H%M%S'`
 tmpfile="/tmp/borgcron"
 
 # Installation de python et de pip
-Installe python3
+Installe python36u
 
 cd /tmp/
 curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-python get-pip.py
+python3.6 get-pip.py
 
-pip install --upgrade setuptools
+pip3.6 install --upgrade setuptools
 
 # Installation de borg
-pip install borgbackup
+pip3.6 install borgbackup
 
 # Inistialisation du repo borg
 borg init --encryption=$PWD $Chemin
