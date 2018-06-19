@@ -17,7 +17,7 @@ then
 	read
 	echo "Dans quel slot est configuré votre Challenge ?(1/2)"
 	read S
-	if [ "$S" = "1" ] || [ "$C" = "2" ]
+	if [ "$S" = "1" ] || [ "$S" = "2" ]
 	then
 		SERIAL=`ykinfo -s`
 		mkdir /home/$LOGIN/.yubico
