@@ -27,11 +27,12 @@ then
 		echo "Dans quel slot voulez-vous configurer votre Cahllenge ? (1/2)"
 		read S
 
+		rm -Rf /root/.yubico
 	 	echo "y" | ykpersonalize -$S -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
 		SERIAL=`ykinfo -s`
 		mkdir /home/$LOGIN/.yubico
 		ykpamcfg -$S
-		mkdir /var/yubico/
+		mkdir /var/yubico
 		mv /root/.yubico/challenge-* /var/yubico/$LOGIN-"${SERIAL: -7}"
 	fi
 fi
