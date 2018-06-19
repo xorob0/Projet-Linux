@@ -5,7 +5,6 @@ source ../Common.sh
 RootCheck
 
 Chemin=`Argument $1 "/Backup"` # Le chemin peut aussi être sous la forme user@hostname:/path/to/repo
-PWD=`Argument $2 "Test123*"`
 DATE=`date '+%Y%m%d%H%M%S'`
 tmpfile="/tmp/borgcron"
 
