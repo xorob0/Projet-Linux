@@ -31,6 +31,7 @@ then
 		SERIAL=`ykinfo -s`
 		mkdir /home/$LOGIN/.yubico
 		ykpamcfg -$S
+		mkdir /var/yubico/
 		mv /root/.yubico/challenge-* /var/yubico/$LOGIN-"${SERIAL: -7}"
 	fi
 fi
