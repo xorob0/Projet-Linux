@@ -11,6 +11,7 @@ tmpfile="/tmp/borgcron"
 
 # Installation de python et de pip
 Installe openssl openssl-devel
+Installe gcc
 Installe yum-utils
 Installe python36u
 
