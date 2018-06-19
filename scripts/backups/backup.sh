@@ -10,6 +10,8 @@ DATE=`date '+%Y%m%d%H%M%S'`
 tmpfile="/tmp/borgcron"
 
 # Installation de python et de pip
+Installe yum-utils
+yum install https://centos7.iuscommunity.org/ius-release.rpm
 Installe python36u
 
 cd /tmp/
