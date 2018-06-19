@@ -66,7 +66,7 @@ file \"forward.$DOMAIN\";
 allow-update { none; };
 };
 
-zone \"2.0.10.in-addr.arpa\" IN {
+zone \"188.168.192.in-addr.arpa\" IN {
 type master;
 file \"reverse.$DOMAIN\";
 allow-update { none; };
