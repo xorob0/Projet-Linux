@@ -27,7 +27,7 @@ options {
 	dump-file 	\"/var/named/data/cache_dump.db\";
 	statistics-file \"/var/named/data/named_stats.txt\";
 	memstatistics-file \"/var/named/data/named_mem_stats.txt\";
-        allow-query    { $NETID.0; localhost; }; /*ajout du reseau autorisé à query*/
+        allow-query    { $NETID.0/24; localhost; }; /*ajout du reseau autorisé à query*/
 	recursion yes;   /*mis sur no */
 
 	dnssec-enable yes;
