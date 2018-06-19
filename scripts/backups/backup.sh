@@ -10,7 +10,7 @@ DATE=`date '+%Y%m%d%H%M%S'`
 tmpfile="/tmp/borgcron"
 
 # Installation de python et de pip
-Installe python
+Installe python3
 
 cd /tmp/
 curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
