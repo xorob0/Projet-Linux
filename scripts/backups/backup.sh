@@ -12,8 +12,9 @@ tmpfile="/tmp/borgcron"
 # Installation de python et de pip
 Installe openssl openssl-devel
 Installe gcc
+Installe libacl libacl-devel
 Installe yum-utils
-Installe python36u
+Installe python36u python36u-devel
 
 cd /tmp/
 curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
