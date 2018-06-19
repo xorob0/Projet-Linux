@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../Common.ssh
+source ../Common.sh
 
 RootCheck
 
