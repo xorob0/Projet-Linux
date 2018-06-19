@@ -7,5 +7,5 @@ source ../Common.sh
 # Installation du module PAM
 Installe pam_yubico
 
-cp ../Files/yubikey-auth /etc/pam.d/yubikey-auth
-cp ../Files/sshd /etc/pam.d/sshd
+cp yubikey-auth /etc/pam.d/yubikey-auth
+cp ../ssh/sshd /etc/pam.d/sshd
